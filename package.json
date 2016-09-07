@@ -1,0 +1,31 @@
+{
+  "name": "local-poker-club",
+  "version": "1.0.0",
+  "description": "A web app for administrators of local poker clubs to manage their games, playerbase and results",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "gulp watch --gulpfile client/gulpfile.babel.js",
+    "lint": "eslint ./"
+  },
+  "author": "Rod Hall <rodhall@hotmail.co.uk>",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "gulp-rename": "^1.2.2",
+    "jquery": "^3.1.0",
+    "mongodb": "^2.2.6"
+  },
+  "devDependencies": {
+    "babel-core": "^6.2.1",
+    "babel-preset-es2015": "^6.1.18",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "gulp": "^3.9.0",
+    "vinyl-source-stream": "^1.1.0",
+    "eslint": "^3.0.0"
+  }
+}

@@ -14,8 +14,7 @@ gulp.task('transpile', () => {
     return browserify(file)
       .transform('babelify')
       .bundle()
-      .on('error', function(err){
-        console.log(err)
+      .on('error', function(){
         this.emit('end')
       })
       .pipe(source(file))

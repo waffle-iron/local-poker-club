@@ -1,6 +1,6 @@
 {
   "name": "local-poker-club",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A web app for administrators of local poker clubs to manage their games, playerbase and results",
   "main": "index.html",
   "scripts": {
@@ -20,12 +20,13 @@
     "mongodb": "^2.2.6"
   },
   "devDependencies": {
-    "babel-core": "^6.2.1",
-    "babel-preset-es2015": "^6.1.18",
+    "babel": "^6.5.2",
+    "babel-core": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0",
     "babelify": "^7.2.0",
     "browserify": "^12.0.1",
-    "gulp": "^3.9.0",
-    "vinyl-source-stream": "^1.1.0",
-    "eslint": "^3.0.0"
+    "eslint": "^3.0.0",
+    "gulp": "^3.9.1",
+    "vinyl-source-stream": "^1.1.0"
   }
 }

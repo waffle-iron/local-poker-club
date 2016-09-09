@@ -6,7 +6,8 @@ import source from 'vinyl-source-stream'
 gulp.task('default', ['transpile'])
 
 const sourceFiles = [
-  'src/app.js'
+  'src/app.js',
+  'src/app.config.js'
 ]
 
 gulp.task('transpile', () => {
@@ -14,7 +15,8 @@ gulp.task('transpile', () => {
     return browserify(file)
       .transform('babelify')
       .bundle()
-      .on('error', function(){
+      .on('error', function(err){
+        console.log(err) //eslint-disable-line no-console
         this.emit('end')
       })
       .pipe(source(file))
@@ -28,8 +30,7 @@ gulp.task('watch', ['transpile'], () => {
   gulp.src([
     '../node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
     '../node_modules/bootstrap/dist/css/bootstrap.min.css',
-    '../node_modules/jquery/dist/jquery.min.js',
-    '../node_modules/angular-ui-router/release/angular-ui-router.min.js'
+    '../node_modules/jquery/dist/jquery.min.js'
   ])
   .pipe(gulp.dest('dist'))
 })

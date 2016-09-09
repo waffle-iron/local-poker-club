@@ -1,11 +1,14 @@
-<html>
+<html ng-app="local-poker-club">
   <head>
+    <base href="/">
   </head>
   <body>
     <h1>localpokerclub.com</h1>
 
-    <script src='./dist/jquery.min.js' />
-    <script src='./dist/angular-ui-router.min.js' />
-    <script src='./dist/src/app.bundle.js' />
+    <ui-view></ui-view>
+
+    <script src='./dist/jquery.min.js'></script>
+    <script src='./dist/src/app.bundle.js'></script>
+    <script src='./dist/src/app.config.bundle.js'></script>
   </body>
 </html>

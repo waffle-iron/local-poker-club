@@ -4,7 +4,7 @@
   "description": "A web app for administrators of local poker clubs to manage their games, playerbase and results",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/.bin/mocha --reporter spec",
     "watch": "gulp watch --gulpfile client/gulpfile.babel.js",
     "lint": "eslint ./"
   },
@@ -12,11 +12,14 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.5.8",
+    "angular-mocks": "^1.5.8",
     "angular-ui-router": "^0.3.1",
     "body-parser": "^1.15.2",
+    "chai": "^3.5.0",
     "express": "^4.14.0",
     "gulp-rename": "^1.2.2",
     "jquery": "^3.1.0",
+    "mocha": "^3.0.2",
     "mongodb": "^2.2.6"
   },
   "devDependencies": {

@@ -16,7 +16,9 @@
     var homeState = {
       name: 'home',
       url: '/',
-      template: '<h1>hello world!</h1>'
+      template: '<h1>hello world!</h1><div ng-controller="clubController as c"><div>{{c.create()}}</div></div>',
+      controller: 'clubController',
+      controllerAs: 'c'
     };
 
     var clubCreate = {

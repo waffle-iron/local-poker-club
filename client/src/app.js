@@ -1,5 +1,5 @@
-import angular from 'angular'
-import uiRouter from 'angular-ui-router'
+require('angular');
+var uiRouter = require('angular-ui-router');
 
 (function() {
   'use strict'

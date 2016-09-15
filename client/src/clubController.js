@@ -5,13 +5,23 @@
     .module('local-poker-club')
     .controller('clubController', clubController)
 
-  function clubController() {
+  clubController.inject = ['$http', '$q']
+
+  function clubController($http, $q) {
     return {
       create: create
     }
 
     function create() {
-      return '200';
+      // dataService.createClub();
+
+      var deferred = $q.defer()
+      $http.post('/clubs/create')
+        .success(function(data) {
+          return deferred.resolve(data)
+        })
+
+      return deferred.promise
     }
   }
 })()

@@ -1,4 +1,5 @@
-(function() {
+/* global angular */
+(function () {
   'use strict'
 
   angular
@@ -9,15 +10,15 @@
 
   function clubController($http, $q) {
     return {
-      create: create
+      create,
     }
 
     function create() {
       // dataService.createClub();
 
-      var deferred = $q.defer()
+      const deferred = $q.defer()
       $http.post('/clubs/create')
-        .success(function(data) {
+        .success((data) => {
           return deferred.resolve(data)
         })
 

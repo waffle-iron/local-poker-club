@@ -1,7 +1,7 @@
-require('angular');
-var uiRouter = require('angular-ui-router');
+const angular = require('angular')
+const uiRouter = require('angular-ui-router');
 
-(function() {
+(function () {
   'use strict'
 
   angular
@@ -33,5 +33,4 @@ var uiRouter = require('angular-ui-router');
   //     console.log("View Load: the view is loaded, and DOM rendered!")
   //   })
   // }
-
 })()

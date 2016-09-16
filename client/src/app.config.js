@@ -1,6 +1,4 @@
-(function() {
-  'use strict'
-
+(function () {
   angular // eslint-disable-line no-undef
     .module('local-poker-club')
     .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', Config])
@@ -8,7 +6,7 @@
   function Config($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode({
       enabled: true,
-      requireBase: false
+      requireBase: false,
     })
 
     const homeState = {
@@ -16,13 +14,13 @@
       url: '/',
       template: '<h1>hello world!</h1><div ng-controller="clubController as c"><div>{{c.create()}}</div></div>',
       controller: 'clubController',
-      controllerAs: 'c'
+      controllerAs: 'c',
     }
 
     const clubCreate = {
       name: 'clubCreate',
       url: '/create',
-      template: '<h1>New Club</h1>'
+      template: '<h1>New Club</h1>',
     }
 
     $stateProvider.state(homeState)
@@ -30,5 +28,4 @@
 
     $urlRouterProvider.otherwise('/api/Projects')
   }
-
-})()
+}())

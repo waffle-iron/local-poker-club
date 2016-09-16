@@ -1,60 +1,60 @@
-require('../client/src/clubController');
+/* global ngModule inject */
+'use strict'
 
+require('../client/src/clubController')
 
-describe('club controller', function() {
-  beforeEach(ngModule('local-poker-club'));
+describe('club controller', () => {
+  beforeEach(ngModule('local-poker-club'))
 
-  var $controller, $httpBackend;
-  var chai = require('chai');
-  var expect = chai.expect;
+  let $controller, $httpBackend
+  const expect = require('chai').expect
 
-  beforeEach(inject(function(_$controller_, _$httpBackend_) {
-    $controller = _$controller_;
-    $httpBackend = _$httpBackend_;
-  }));
+  beforeEach(inject((_$controller_, _$httpBackend_) => {
+    $controller = _$controller_
+    $httpBackend = _$httpBackend_
+  }))
 
-  describe('create new club', function() {
+  describe('create new club', () => {
+    let controller
 
-    var controller;
-
-    beforeEach(function() {
-      controller = $controller('clubController');
-    });
-
-    it('contains a function called "create"', function() {
-      expect(controller.create).to.not.be.undefined;
+    beforeEach(() => {
+      controller = $controller('clubController')
     })
 
-    it('returns 201 status code', function() {
-      $httpBackend.when('POST', '/clubs/create')
-        .respond({'status': 201, 'club': {clubId:1, clubName:'Club Foo', owner:'foo@bar.com'}});
-
-      var statusCode;
-
-      controller.create().then(function(data) {
-        statusCode = data.status;
-      });
-
-      $httpBackend.flush();
-
-      expect(statusCode).to.equal(201);
+    it('contains a function called "create"', () => {
+      expect(controller.create).to.not.be.undefined
     })
 
-    it('should create a new club', function() {
-      var expected = {clubId:1, clubName:'Club Foo', owner:'foo@bar.com'};
+    it('returns 201 status code', () => {
+      $httpBackend.when('POST', '/clubs/create')
+        .respond({ 'status': 201, 'club': { clubId: 1, clubName: 'Club Foo', owner: 'foo@bar.com' } })
+
+      let statusCode
+
+      controller.create().then((data) => {
+        statusCode = data.status
+      })
+
+      $httpBackend.flush()
+
+      expect(statusCode).to.equal(201)
+    })
+
+    it('should create a new club', () => {
+      const expected = { clubId: 1, clubName: 'Club Foo', owner: 'foo@bar.com' }
 
       $httpBackend.when('POST', '/clubs/create')
-        .respond(201, {clubId:1, clubName:'Club Foo', owner:'foo@bar.com'});
+        .respond(201, { clubId: 1, clubName: 'Club Foo', owner: 'foo@bar.com' })
 
-      var response;
+      let response
 
-      controller.create().then(function(data) {
-        response = data;
-      });
+      controller.create().then((data) => {
+        response = data
+      })
 
-      $httpBackend.flush();
+      $httpBackend.flush()
 
-      expect(response).to.deep.equal(expected);
+      expect(response).to.deep.equal(expected)
     })
   })
 })

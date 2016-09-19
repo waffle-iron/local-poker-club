@@ -12,7 +12,7 @@
     const homeState = {
       name: 'home',
       url: '/',
-      template: '<h1>hello world!</h1><div ng-controller="clubController as c"><div>{{c.create()}}</div></div>',
+      templateUrl: '../src/views/clubs/create.html',
       controller: 'clubController',
       controllerAs: 'c',
     }

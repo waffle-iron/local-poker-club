@@ -2,8 +2,6 @@
 'use strict';
 
 (function () {
-  'use strict';
-
   angular // eslint-disable-line no-undef
   .module('local-poker-club').config(['$stateProvider', '$urlRouterProvider', '$locationProvider', Config]);
 
@@ -16,7 +14,7 @@
     var homeState = {
       name: 'home',
       url: '/',
-      template: '<h1>hello world!</h1><div ng-controller="clubController as c"><div>{{c.create()}}</div></div>',
+      templateUrl: '../src/views/clubs/create.html',
       controller: 'clubController',
       controllerAs: 'c'
     };

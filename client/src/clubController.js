@@ -6,23 +6,15 @@
     .module('local-poker-club')
     .controller('clubController', clubController)
 
-  clubController.inject = ['$http', '$q']
+  clubController.$inject = ['dataService']
 
-  function clubController($http, $q) {
+  function clubController(dataService) {
     return {
-      create,
+      create: create
     }
 
-    function create() {
-      // dataService.createClub();
-
-      const deferred = $q.defer()
-      $http.post('/clubs/create')
-        .success((data) => {
-          return deferred.resolve(data)
-        })
-
-      return deferred.promise
+    function create(club) {
+      return dataService.createClub(club)
     }
   }
 })()

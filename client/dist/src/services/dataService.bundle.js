@@ -5,17 +5,29 @@
 (function () {
   'use strict';
 
-  angular.module('local-poker-club').controller('clubController', clubController);
+  angular.module('local-poker-club').service('dataService', dataService);
 
-  clubController.$inject = ['dataService'];
+  dataService.$inject = ['$http', '$q'];
 
-  function clubController(dataService) {
+  function dataService($http, $q) {
     return {
-      create: create
+      createClub: createClub
     };
 
-    function create(club) {
-      return dataService.createClub(club);
+    function createClub(club) {
+      var deferred = $q.defer();
+
+      $http.post('/clubs/add', { club: club }).then(success, error);
+
+      function success(response) {
+        return deferred.resolve(response);
+      }
+
+      function error(err) {
+        console.log('failure message: ' + err); // eslint-disable-line no-console
+      }
+
+      return deferred.promise;
     }
   }
 })();

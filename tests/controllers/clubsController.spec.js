@@ -43,7 +43,7 @@ describe('club controller', () => {
     it('should call the data service', () => {
       const spy = chai.spy.on(dataService, 'createClub')
 
-      controller.create()
+      controller.create({clubName: 'Club Foo', owner: 'foo@bar.com'})
 
       expect(spy).to.be.spy
       expect(spy).to.have.been.called()

@@ -7,27 +7,67 @@
 
   angular.module('local-poker-club').service('dataService', dataService);
 
-  dataService.$inject = ['$http', '$q'];
+  dataService.$inject = ['$http', '$q', '$log'];
 
-  function dataService($http, $q) {
+  function dataService($http, $q, $log) {
     return {
-      createClub: createClub
+      createClub: createClub,
+      fetchClub: fetchClub
     };
 
     function createClub(club) {
       var deferred = $q.defer();
 
-      $http.post('/clubs/add', { club: club }).then(success, error);
+      return validateClub(club).then(create, handleError);
+
+      function create(validationResult) {
+        if (validationResult.result === false) {
+          $http.post('/clubs/add', { club: club }).then(success, error);
+        } else {
+          throw 'Club Name already exists, please choose another name';
+        }
+      }
+
+      function handleError(err) {
+        console.log(err);
+        $log(err);
+      }
 
       function success(response) {
         return deferred.resolve(response);
       }
 
       function error(err) {
-        console.log('failure message: ' + err); // eslint-disable-line no-console
+        console.log(err);
+        return deferred.resolve(err);
       }
+    }
 
-      return deferred.promise;
+    function validateClub(club) {
+      if (!club) return { result: false, reason: 'Missing club' };
+      if (!club.clubName) return { result: false, reason: 'Missing clubName' };
+      if (!club.owner) return { result: false, reason: 'Missing owner' };
+
+      var def = $q.defer();
+      return fetchClub(club.clubName).then(function (club) {
+        var existingClub = club;
+        if (existingClub) return { result: false, reason: 'Club already exists. Choose another Club Name' };
+        return { result: true };
+      }, function (err) {
+        $log(err);
+      });
+    }
+
+    function fetchClub(clubName) {
+      var def = $q.defer();
+      $http.get('/clubs/fetch/' + clubName).then(function (club) {
+        def.resolve(club);
+      }, function (err) {
+        $log.error(err);
+        def.reject('Failed to get club');
+      });
+
+      return def.promise;
     }
   }
 })();

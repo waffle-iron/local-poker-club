@@ -30,9 +30,20 @@ gulp.task('transpile', () => {
 gulp.task('watch', ['transpile'], () => {
   gulp.watch('src/**/*', ['transpile'])
   gulp.src([
-    '../node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
-    '../node_modules/bootstrap/dist/css/bootstrap.min.css',
+    '../node_modules/bootstrap/dist/js/bootstrap.min.js',
     '../node_modules/jquery/dist/jquery.min.js',
   ])
-  .pipe(gulp.dest('dist'))
+  .pipe(gulp.dest('dist/js'))
+
+  gulp.watch('src/**/*', ['transpile'])
+  gulp.src([
+    '../node_modules/bootstrap/dist/css/bootstrap.min.css',
+  ])
+  .pipe(gulp.dest('dist/css'))
+
+  gulp.watch('src/**/*', ['transpile'])
+  gulp.src([
+    '../node_modules/bootstrap/dist/fonts/glyphicons-halflings-regular.*'
+  ])
+  .pipe(gulp.dest('dist/fonts'))
 })

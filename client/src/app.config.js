@@ -1,14 +1,9 @@
 (function () {
   angular // eslint-disable-line no-undef
     .module('local-poker-club')
-    .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', Config])
+    .config(['$stateProvider', '$urlRouterProvider', Config])
 
-  function Config($stateProvider, $urlRouterProvider, $locationProvider) {
-    $locationProvider.html5Mode({
-      enabled: true,
-      requireBase: false,
-    })
-
+  function Config($stateProvider, $urlRouterProvider) {
     const homeState = {
       name: 'home',
       url: '/',

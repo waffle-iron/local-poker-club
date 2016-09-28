@@ -8,7 +8,7 @@ gulp.task('default', ['transpile'])
 const sourceFiles = [
   'src/app.js',
   'src/app.config.js',
-  'src/clubController.js',
+  'src/controllers/clubController.js',
   'src/services/clubService.js',
 ]
 

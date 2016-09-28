@@ -1,7 +1,7 @@
 /* global ngModule inject */
 'use strict'
 
-require('../../client/dist/src/clubController.bundle')
+require('../../client/dist/src/controllers/clubController.bundle')
 require('../../client/dist/src/services/dataService.bundle')
 
 const chai = require('chai')
@@ -30,18 +30,18 @@ describe('club controller', () => {
 
   describe('when creating a new club, ', () => {
     let controller
-    let dataService
+    let clubService
 
-    beforeEach(inject(_dataService_ => {
-      dataService = _dataService_
+    beforeEach(inject(_clubService_ => {
+      clubService = _clubService_
     }))
 
     beforeEach(() => {
       controller = $controller('clubController')
     })
 
-    it('should call the data service', () => {
-      const spy = chai.spy.on(dataService, 'createClub')
+    it('should call the club service', () => {
+      const spy = chai.spy.on(clubService, 'post')
 
       controller.create({clubName: 'Club Foo', owner: 'foo@bar.com'})
 

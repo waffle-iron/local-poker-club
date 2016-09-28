@@ -7,15 +7,15 @@
 
   angular.module('local-poker-club').controller('clubController', clubController);
 
-  clubController.$inject = ['dataService'];
+  clubController.$inject = ['clubService'];
 
-  function clubController(dataService) {
+  function clubController(clubService) {
     return {
       create: create
     };
 
     function create(club) {
-      return dataService.createClub(club);
+      return clubService.post(club);
     }
   }
 })();

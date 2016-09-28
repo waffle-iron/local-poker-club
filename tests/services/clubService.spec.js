@@ -31,6 +31,11 @@ describe('club service', () => {
       expect(clubService).to.not.be.undefined
       expect(clubService.get).to.not.be.undefined
     })
+
+    it('should contain a \'put\' method', () => {
+      expect(clubService).to.not.be.undefined
+      expect(clubService.put).to.not.be.undefined
+    })
   })
 
   describe('when creating a new club, ', () => {

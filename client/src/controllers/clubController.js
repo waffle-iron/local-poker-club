@@ -6,15 +6,25 @@
     .module('local-poker-club')
     .controller('clubController', clubController)
 
-  clubController.$inject = ['clubService']
+  clubController.$inject = ['$state', 'clubService']
 
-  function clubController(clubService) {
+  function clubController($state, clubService) {
     return {
       create: create
     }
 
     function create(club) {
-      return clubService.post(club)
+      const clubObj = {
+        clubName: club.clubName,
+        owner: club.owner,
+      }
+
+      clubService.post(clubObj)
+        .then(response => {
+          if (response.status === 201) {
+            $state.go('clubsList', { message: `Club ${clubObj.clubName} was created successfully` })
+          }
+        })
     }
   }
 })()

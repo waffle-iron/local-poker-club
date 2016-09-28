@@ -25,7 +25,9 @@
     var clubCreate = {
       name: 'clubsCreate',
       url: '/create',
-      template: '<h1>New Club</h1>'
+      templateUrl: '../src/views/clubs/create.html',
+      controller: 'clubController',
+      controllerAs: 'clubCtrl'
     };
 
     $stateProvider.state(homeState);

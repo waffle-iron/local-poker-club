@@ -7,15 +7,24 @@
 
   angular.module('local-poker-club').controller('clubController', clubController);
 
-  clubController.$inject = ['clubService'];
+  clubController.$inject = ['$state', 'clubService'];
 
-  function clubController(clubService) {
+  function clubController($state, clubService) {
     return {
       create: create
     };
 
     function create(club) {
-      return clubService.post(club);
+      var clubObj = {
+        clubName: club.clubName,
+        owner: club.owner
+      };
+
+      clubService.post(clubObj).then(function (response) {
+        if (response.status === 201) {
+          $state.go('clubsList', { message: 'Club ' + clubObj.clubName + ' was created successfully' });
+        }
+      });
     }
   }
 })();

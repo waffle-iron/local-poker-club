@@ -1,4 +1,15 @@
-<div ng-controller="clubController as c">
+
   <h2>Create Club</h2>
-  <div ng-click="c.create({'clubName':'club foo', 'owner': 'foo@bar.com'})">dfdfgdfg</div>
-</div>
+  <div class="well well-sm">{{club.clubName}}</div>
+  <div class="well well-sm">{{club.owner}}</div>
+  <form name="club">
+    <div class="form-group">
+      <label>Club Name</label>
+      <input type="text" class="form-control" ng-model="club.clubName" placeholder="Enter a Club Name (Must be unique)">
+    </div>
+    <div class="form-group">
+      <label>Club Owner</label>
+      <input type="email" class="form-control" ng-model="club.owner" placeholder="owner@example.com">
+    </div>
+  </form>
+  <div class="btn btn-primary" ng-click="clubCtrl.create(club)">Save</div>

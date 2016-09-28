@@ -27,14 +27,20 @@ app.get('/clubs/get/:clubName', (request, response) => {
 
 app.post('/clubs/post', (request, response) => {
   const club = request.body.club
+  console.log('inserting bluc')
+  console.log(club)
   const clubs = mongoUtil.clubs()
   clubs.insert(club).then(data => {
     if (data.insertedCount === 1) {
       response.sendStatus(201)
+      console.log(201)
     }
     else {
+      console.log(500)
       response.sendStatus(500)
     }
+  }, err => {
+    console.log(err)
   })
 
   app.put('/clubs/put', (request, response) => {

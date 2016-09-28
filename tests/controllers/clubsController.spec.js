@@ -2,7 +2,7 @@
 'use strict'
 
 require('../../client/dist/src/controllers/clubController.bundle')
-require('../../client/dist/src/services/dataService.bundle')
+require('../../client/dist/src/services/clubService.bundle')
 
 const chai = require('chai')
 const spies = require('chai-spies')

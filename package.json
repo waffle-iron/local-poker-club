@@ -4,7 +4,7 @@
   "description": "A web app for administrators of local poker clubs to manage their games, playerbase and results",
   "main": "index.html",
   "scripts": {
-    "test": "mocha test/**/*.js",
+    "test": "mocha test/*.js",
     "watch": "gulp watch --gulpfile client/gulpfile.babel.js",
     "lint": "eslint ./"
   },

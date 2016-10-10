@@ -1,7 +1,7 @@
 /* global ngModule inject */
 'use strict'
 
-require('../../client/dist/src/services/clubService.bundle')
+require('../client/dist/src/services/clubService.bundle')
 
 const chai = require('chai')
 const spies = require('chai-spies')

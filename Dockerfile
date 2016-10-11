@@ -11,8 +11,11 @@ RUN yum install -y npm
 # Copy app to /src
 COPY . /src
 
+# Install MongoDb
+RUN --name mongodb -d mongo
+
 # Install app and dependencies into /src
-RUN cd /src; npm install
+RUN --link mongodb:'local-poker-club' -p 80:8181 cd /src; npm install
 
 EXPOSE 8181
 

@@ -1,22 +1,22 @@
-'use strict'
+'use strict';
 
-const mongo = require('mongodb')
-const client = mongo.MongoClient
-let _db
+var mongo = require('mongodb');
+var client = mongo.MongoClient;
+var _db = void 0;
 
 module.exports = {
-  connect() {
-    client.connect('mongodb://localhost:27017/local-poker-club', (err, db) => {
+  connect: function connect() {
+    client.connect('mongodb://localhost:27017/local-poker-club', function (err, db) {
       if (err) {
-        console.log('ERROR: ' + err) // eslint-disable-line no-console
-        process.exit(1)
+        console.log('ERROR: ' + err); // eslint-disable-line no-console
+        process.exit(1);
       }
 
-      _db = db
-      console.log('Connected to Mongo') // eslint-disable-line no-console
-    })
+      _db = db;
+      console.log('Connected to Mongo'); // eslint-disable-line no-console
+    });
   },
-  clubs() {
-    return _db.collection('clubs')
+  clubs: function clubs() {
+    return _db.collection('clubs');
   }
-}
+};

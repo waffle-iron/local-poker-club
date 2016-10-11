@@ -9,7 +9,7 @@ module.exports = {
     client.connect('mongodb://localhost:27017/local-poker-club', function (err, db) {
       if (err) {
         console.log('ERROR: ' + err); // eslint-disable-line no-console
-        process.exit(1);
+        //process.exit(1);
       }
 
       _db = db;

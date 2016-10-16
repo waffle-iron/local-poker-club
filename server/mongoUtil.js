@@ -2,7 +2,7 @@
 
 var mongo = require('mongodb');
 var client = mongo.MongoClient;
-var _db = void 0;
+var _db;
 
 module.exports = {
   connect: function connect() {
@@ -14,6 +14,7 @@ module.exports = {
 
       _db = db;
       console.log('Connected to Mongo'); // eslint-disable-line no-console
+      console.log(db);
     });
   },
   clubs: function clubs() {

@@ -16,4 +16,5 @@ RUN cd /src; npm install
 
 EXPOSE 8181
 
+
 CMD cd /src && node ./server/app.js

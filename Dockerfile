@@ -9,10 +9,10 @@ RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.
 RUN yum install -y npm
 
 # Install Mongo
-docker run --name lpc-db -d mongo
+RUN --name lpc-db -d mongo
 
 # Run app
-docker run --name lpc --link lpc-db:mongodbo -p 8181:8181 -d rodhall85/local-poker-club
+RUN --name lpc --link lpc-db:mongodbo -p 8181:8181 -d rodhall85/local-poker-club
 
 EXPOSE 8181
 

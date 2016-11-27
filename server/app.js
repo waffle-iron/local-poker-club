@@ -1,9 +1,16 @@
 'use strict';
 
-var express = require('express');
-var mongoUtil = require('./mongoUtil');
-var bodyParser = require('body-parser');
-var app = express();
+import express from 'express';
+import webpack from 'webpack';
+import path from 'path';
+import config from '../webpack.config.dev';
+import open from 'open';
+import mongoUtil from './mongoUtil';
+import bodyParser from 'body-parser';
+
+const port = 8181;
+const app = express();
+const compiler = webpack(config);
 
 mongoUtil.connect();
 
@@ -11,8 +18,18 @@ app.use(express.static(__dirname + '/../client'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true,
+  publicPath: config.output.publicPath
+}));
+
+app.use(require('webpack-hot-middleware')(compiler));
+
+app.get('*', function(req, res) {
+  res.sendFile(path.join( __dirname, '../client/index.html'));
+});
+
 app.get('/clubs/get/:clubName', function (request, response) {
-  console.log('bingo');
   var clubName = request.params.clubName;
   if (!clubName) {
     response.sendStatus(400);
@@ -24,26 +41,19 @@ app.get('/clubs/get/:clubName', function (request, response) {
   if (!existingClub) {
     response.sendStatus(404);
   }
-  console.log(existingClub);
   response.sendStatus(200);
   response.body = existingClub;
 });
 
 app.post('/clubs/post', function (request, response) {
   var club = request.body.club;
-  console.log('inserting bluc');
-  console.log(club);
   var clubs = mongoUtil.clubs();
   clubs.insert(club).then(function (data) {
     if (data.insertedCount === 1) {
       response.sendStatus(201);
-      console.log(201);
     } else {
-      console.log(500);
       response.sendStatus(500);
     }
-  }, function (err) {
-    console.log(err);
   });
 
   app.put('/clubs/put', function (request, response) {
@@ -57,8 +67,13 @@ app.post('/clubs/post', function (request, response) {
       }
     });
   });
-});
 
-app.listen(8181, function () {
-  return console.log('Listening on port 8181');
-}); // eslint-disable-line no-console
+  app.listen(port, function(err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('Will open it');
+      open(`http://localhost:${port}`);
+    }
+  });
+});

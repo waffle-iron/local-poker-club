@@ -14,7 +14,6 @@ module.exports = {
 
       _db = db;
       console.log('Connected to Mongo'); // eslint-disable-line no-console
-      console.log(db);
     });
   },
   clubs: function clubs() {

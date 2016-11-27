@@ -6,7 +6,7 @@ var _db;
 
 module.exports = {
   connect: function connect() {
-    client.connect('mongodb://mongodb:27017/local-poker-club', function (err, db) {
+    client.connect('mongodb://localhost:27017/local-poker-club', function (err, db) {
       if (err) {
         console.log('ERROR: ' + err); // eslint-disable-line no-console
         //process.exit(1);

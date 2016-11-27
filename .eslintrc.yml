@@ -18,4 +18,5 @@ rules:
     - single
   semi:
     - error
-    - never
+  no-console:
+    - warn

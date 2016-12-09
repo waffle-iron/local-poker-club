@@ -73,14 +73,70 @@ describe('club service', () => {
     });
   });
 
+  describe('when fetching all clubs', () => {
+    const clubs = [
+      {_id:1, clubName: 'Club Foo', owner: 'foo@lpc.io'},
+      {_id:2, clubName: 'Club Bar', owner: 'bar@lpc.io'},
+      {_id:3, clubName: 'Club Baz', owner: 'baz@lpc.io'},
+    ];
+
+    beforeEach(() => {
+      $httpBackend
+        .when('GET', '/clubs/get')
+        .respond(200, {clubs});
+
+      clubService.get('*', promise => {
+        promise.then(clubs => {
+          response = clubs;
+        });
+      });
+
+      $httpBackend.flush();
+    });
+
+    it('should respond 200', () => {
+      expect(response.status).to.equal(200);
+    });
+
+    it('should return 3 clubs', () => {
+      expect(response.data.clubs.length).to.equal(3);
+    });
+
+    it('should return the correct clubs', () => {
+      expect(response.data.clubs).to.deep.equal(clubs);
+    });
+  });
+
+  describe('when fetching all clubs but none exist', () => {
+    beforeEach(() => {
+      $httpBackend
+        .when('GET', '/clubs/get')
+        .respond(404, null);
+
+      clubService.get('*', promise => {
+        promise.catch(err => {
+          response = err;
+        });
+      });
+
+      $httpBackend.flush();
+    });
+
+    it('should respond 404', () => {
+      expect(response.status).to.equal(404);
+    });
+  });
+
   describe('when fetching an existing club', () => {
     beforeEach(() => {
       $httpBackend
         .when('GET', '/clubs/get/Club Foo')
         .respond(200, {_id:1, clubName: 'Club Foo', owner: 'foo@bar.com'});
 
-      clubService.get('Club Foo').then(club => {
-        response = club;
+      clubService.get('Club Foo', promise => {
+        promise.then(club => {
+          response = club;
+        });
       });
 
       $httpBackend.flush();

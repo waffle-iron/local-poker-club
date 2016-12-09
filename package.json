@@ -5,11 +5,10 @@
   "main": "index.html",
   "scripts": {
     "test": "mocha test/*.js",
-    "lint": "node_modules/.bin/esw webpack.config.* client server",
-    "start": "npm-run-all --parallel test:watch open:src lint:watch",
-    "open:src": "babel-node server/app.js",
-    "lint:watch": "npm run lint -- --watch",
-    "test:watch": "npm run test -- --watch"
+    "watch": "gulp watch --gulpfile client/gulpfile.babel.js",
+    "lint": "eslint ./",
+    "open": "babel-node server/app.js",
+    "start": "npm-run-all test lint open"
   },
   "author": "Rod Hall <rodhall@hotmail.co.uk>",
   "license": "ISC",
@@ -35,15 +34,10 @@
     "chai": "^3.5.0",
     "chai-spies": "^0.7.1",
     "eslint": "^3.5.0",
-    "eslint-watch": "^2.1.14",
     "jsdom": "^9.5.0",
     "mocha": "^3.0.2",
     "npm-run-all": "^3.1.1",
-    "open": "0.0.5",
-    "path": "^0.12.7",
     "supervisor": "^0.11.0",
-    "watchify": "^3.7.0",
-    "webpack": "^1.13.3",
-    "webpack-dev-middleware": "^1.8.4"
+    "watchify": "^3.7.0"
   }
 }

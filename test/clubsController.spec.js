@@ -51,6 +51,28 @@ describe('club controller', () => {
 
   });
 
+  /*describe('when getting all clubs', () => {
+    let controller;
+    let clubService;
+
+    beforeEach(inject(_clubService_ => {
+      clubService = _clubService_;
+    }));
+
+    beforeEach(() => {
+      controller = $controller('clubController');
+    });
+
+    it('should call the club service', () => {
+      const spy = chai.spy.on(clubService, 'get');
+
+      console.log(controller.clubs);
+
+      expect(spy).to.be.spy;
+      expect(spy).to.have.been.called();
+    });
+  });*/
+
   //// when creating a new club
   ////// it should contain the new club on the view model
   ////// it should handle bad data

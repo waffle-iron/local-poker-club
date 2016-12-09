@@ -17,7 +17,7 @@
       url: '/clubs',
       templateUrl: '../src/views/clubs/index.html',
       controller: 'clubController',
-      controllerAs: 'c',
+      controllerAs: 'clubCtrl',
     };
 
     const clubCreate = {

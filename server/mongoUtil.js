@@ -13,7 +13,7 @@ module.exports = {
       }
 
       _db = db;
-      console.log('Connected to Mongo'); // eslint-disable-line no-console
+      console.log('1. Connected to Mongo'); // eslint-disable-line no-console
     });
   },
   clubs: function clubs() {

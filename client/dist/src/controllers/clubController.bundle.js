@@ -7,12 +7,26 @@
 
   angular.module('local-poker-club').controller('clubController', clubController);
 
-  clubController.$inject = ['$state', 'clubService'];
+  clubController.$inject = ['$state', '$scope', 'clubService'];
 
-  function clubController($state, clubService) {
+  function clubController($state, $scope, clubService) {
+    getClubs();
+
     return {
+      message: 'Hey!',
+      clubs: getClubs(),
       create: create
     };
+
+    function getClubs() {
+      clubService.get('*', function (promise) {
+        promise.then(function (allClubs) {
+          if (allClubs.status === 200) {
+            $scope.fuckyou = allClubs.data;
+          }
+        });
+      });
+    }
 
     function create(club) {
       var clubObj = {

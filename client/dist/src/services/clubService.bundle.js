@@ -20,8 +20,14 @@
       return $http.post('/clubs/post', { club: club });
     }
 
-    function get(clubName) {
-      return $http.get('/clubs/get/' + clubName);
+    function get(clubName, done) {
+      if (clubName === '*') {
+        // GET All
+        done($http.get('/clubs/get'));
+      } else {
+        // GET One
+        done($http.get('/clubs/get/' + clubName));
+      }
     }
 
     function put(club) {
